@@ -1,0 +1,160 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/adproqwq/LiteLoaderQQNT-Manifest-JsonSchema/main/manifest.shcema.json",
+  "title": "manifest JSON schema",
+  "description": "A JSON schema for LiteLoaderQQNT manifest.",
+  "properties": {
+    "manifest_version": {
+      "description": "manifest版本，LiteLoaderQQNT 1.0.0后使用4；0.x使用3",
+      "enum": [
+        3,
+        4
+      ]
+    },
+    "type": {
+      "description": "插件类型",
+      "enum": [
+        "extension",
+        "theme",
+        "framework"
+      ]
+    },
+    "name": {
+      "description": "插件名",
+      "type": "string"
+    },
+    "slug": {
+      "description": "插件代码内标识",
+      "type": "string"
+    },
+    "description": {
+      "description": "插件描述",
+      "type": "string"
+    },
+    "version": {
+      "description": "版本号",
+      "type": "string"
+    },
+    "icon": {
+      "description": "插件图标，使用相对路径。非必填，接受string或null类型",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "thumb": {
+      "description": "设置页的图标。其余同icon",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "authors": {
+      "description": "作者们的信息",
+      "type": "array",
+      "exclusiveMinimum": 1,
+      "items": {
+        "properties": {
+          "name": {
+            "description": "作者名字",
+            "type": "string"
+          },
+          "link": {
+            "description": "作者链接",
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "name",
+          "link"
+        ]
+      }
+    },
+    "dependencies": {
+      "description": "插件依赖项，写入插件slug名",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "platform": {
+      "title": "插件支持的系统平台",
+      "description": "Winows: win32 | Linux: linux | MacOS: darwin",
+      "type": "array",
+      "uniqueItems": true,
+      "exclusiveMinimum": 1,
+      "items": {
+        "enum": [
+          "win32",
+          "linux",
+          "darwin"
+        ]
+      }
+    },
+    "injects": {
+      "description": "要注入的脚本",
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "main": {
+          "description": "要注入主进程脚本的相对路径",
+          "type": "string"
+        },
+        "preload": {
+          "description": "要注入的预加载脚本的相对路径",
+          "type": "string"
+        },
+        "renderer": {
+          "description": "要注入渲染进程脚本的相对路径",
+          "type": "string"
+        }
+      }
+    },
+    "repository": {
+      "description": "插件仓库信息",
+      "type": "object",
+      "properties": {
+        "repo": {
+          "title": "仓库短地址",
+          "description": "格式：Github用户名/Github仓库名",
+          "type": "string"
+        },
+        "branch": {
+          "description": "分支名称",
+          "type": "string"
+        },
+        "release": {
+          "title": "发布信息",
+          "description": "不写将使用仓库源码",
+          "type": "object",
+          "properties": {
+            "tag": {
+              "description": "tag 名称，不推荐写 latest",
+              "type": "string"
+            },
+            "file": {
+              "description": "release 内的文件名，不填会直接下载 tag 的源码",
+              "type": "string"
+            }
+          },
+          "required": ["tag"]
+        }
+      },
+      "required": [
+        "repo",
+        "branch"
+      ]
+    }
+  },
+  "required": [
+    "manifest_version",
+    "name",
+    "slug",
+    "description",
+    "version",
+    "authors",
+    "platform"
+  ]
+}
