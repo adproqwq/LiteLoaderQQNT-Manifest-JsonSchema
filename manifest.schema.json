@@ -5,8 +5,12 @@
   "description": "A JSON schema for LiteLoaderQQNT manifest.",
   "properties": {
     "manifest_version": {
-      "description": "manifest版本，LiteLoaderQQNT 1.0.0后使用4；0.x使用3",
+			"title": "menifest文件版本",
+			"description": "当前版本为 4",
+      "default": 4,
       "enum": [
+        1,
+        2,
         3,
         4
       ]
@@ -131,13 +135,15 @@
           "type": "object",
           "properties": {
             "tag": {
-              "description": "tag 名称，不推荐写 latest",
-              "type": "string"
-            },
-            "file": {
-              "description": "release 内的文件名，不填会直接下载 tag 的源码",
-              "type": "string"
-            }
+							"title": "tag 名称",
+							"description": "不推荐写 latest",
+							"type": "string"
+						},
+						"file": {
+							"title": "release 内的文件名",
+							"description": "不填会直接下载 tag 的源码",
+							"type": "string"
+						}
           },
           "required": ["tag"]
         }
