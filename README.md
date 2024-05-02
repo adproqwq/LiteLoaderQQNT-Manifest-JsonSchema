@@ -7,7 +7,7 @@
 在`manifest.json`的根对象顶端加入：
 
 ```json
-"$schema": "https://raw.githubusercontent.com/adproqwq/LiteLoaderQQNT-Manifest-JsonSchema/main/manifest.shcema.json"
+"$schema": "https://raw.githubusercontent.com/adproqwq/LiteLoaderQQNT-Manifest-JsonSchema/main/manifest.schema.json"
 ```
 
 ## License
