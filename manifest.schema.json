@@ -152,6 +152,11 @@
         "repo",
         "branch"
       ]
+    },
+    "PIinstall": {
+      "title": "PluginInstaller 插件专用",
+      "description": "用于关闭插件自动安装",
+      "type": "boolean"
     }
   },
   "required": [
